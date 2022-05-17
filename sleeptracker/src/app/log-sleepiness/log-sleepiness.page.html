@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sleepiness</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list-header>How sleepy are you today?</ion-list-header>
+  <ion-item>
+    <ion-label>Sleepiness Level</ion-label>
+    <ion-select [(ngModel)]="sleepy" (ionChange)="sleepiness=sleepy">
+      <ion-select-option [value]="7">7</ion-select-option>
+      <ion-select-option [value]="6">6</ion-select-option>
+      <ion-select-option [value]="5">5</ion-select-option>
+      <ion-select-option [value]="4">4</ion-select-option>
+      <ion-select-option [value]="3">3</ion-select-option>
+      <ion-select-option [value]="2">2</ion-select-option>
+      <ion-select-option [value]="1">1</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-list id="sleepiness-list">
+    <!-- button (click)="buttonClick()" [ngStyle]="{'background-color': buttonColor}"-->
+    <ion-card id="scale7"><ion-card-content>7: No longer fighting sleep, sleep onset soon; having dream-like thoughts</ion-card-content></ion-card>
+    <ion-card id="scale6"><ion-card-content>6: Sleepy, woozy, fighting sleep; prefer to lie down</ion-card-content></ion-card>
+    <ion-card id="scale5"><ion-card-content>5: Foggy; losing interest in remaining awake; slowed down</ion-card-content></ion-card>
+    <ion-card id="scale4"><ion-card-content>4: Somewhat foggy, let down</ion-card-content></ion-card>
+    <ion-card id="scale3"><ion-card-content>3: Awake, but relaxed; responsive but not fully alert</ion-card-content></ion-card>
+    <ion-card id="scale2"><ion-card-content>2: Functioning at high levels, but not at peak; able to concentrate</ion-card-content></ion-card>
+    <ion-card id="scale1"><ion-card-content>1: Feeling active, vital, alert, or wide awake</ion-card-content></ion-card>
+  </ion-list>
+</ion-content>
+<ion-button expand="block" id="logged-sleep" (click)="loggedSleep()" [disabled]="!sleepy">Log!</ion-button>

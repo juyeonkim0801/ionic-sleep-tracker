@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Sleep
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>I fell asleep at:</ion-list-header>
+    <ion-card>
+      <ion-item (click)="showPicker = !showPicker" button="true" id="open-date-input">
+        <!--<ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-input placeholder="Date" [value]="dateValue1"></ion-input>-->
+        <ion-input placeholder="Date" slot="start" 
+        value="{{ date | date: 'MM.dd.yyyy' }}"></ion-input>
+        <ion-modal trigger="open-date-input" show-backdrop="false">
+          <ng-template>
+            <ion-datetime
+              [(ngModel)]="date"
+              #popoverDatetime
+              presentation="date"
+              (ionChange)="dateValue1 = formatDate(popoverDatetime.value)"
+              showDefaultButtons ="true"
+            >
+          </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      
+      <ion-item (click)="showPicker = !showPicker" button="true" id="open-date-input2">
+          <!--<ion-icon name="alarm-outline" slot="start"></ion-icon>-->
+          <ion-input placeholder="Time" slot="start" value="{{ time | date: 'h:mm a'}}"></ion-input>
+          <ion-modal trigger="open-date-input2" show-backdrop="false" >
+            <ng-template>
+              <ion-datetime
+                [(ngModel)]="time"
+                #popoverTime
+                presentation="time"
+                (ionChange)="timeValue1 = formatTime(popoverTime.value)"
+                showDefaultButtons ="true"
+              >
+            </ion-datetime>
+            </ng-template>
+          </ion-modal>
+      </ion-item>
+    </ion-card>
+    
+    <ion-list-header>I woke up at:</ion-list-header>
+    <ion-card>
+      <ion-item (click)="showPicker = !showPicker" button="true" id="open-date-input3">
+        <!--<ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-input placeholder="Date" [value]="dateValue1"></ion-input>-->
+        <ion-input placeholder="Date" slot="start" 
+        value="{{ date2 | date: 'MM.dd.yyyy' }}"></ion-input>
+        <ion-modal trigger="open-date-input3" show-backdrop="false" >
+          <ng-template>
+            <ion-datetime
+              [(ngModel)]="date2"
+              #popoverDatetime2
+              presentation="date"
+              (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+              showDefaultButtons ="true"
+            >
+          </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      
+      <ion-item (click)="showPicker = !showPicker" button="true" id="open-date-input4">
+          <!--<ion-icon name="alarm-outline" slot="start"></ion-icon>-->
+          <ion-input placeholder="Time" slot="start" value="{{ time2 | date: 'h:mm a'}}"></ion-input>
+          <ion-modal trigger="open-date-input4" show-backdrop="false" >
+            <ng-template>
+              <ion-datetime
+                [(ngModel)]="time2"
+                #popoverTime2
+                presentation="time"
+                (ionChange)="timeValue2 = formatTime(popoverTime2.value)"
+                showDefaultButtons ="true"
+              >
+            </ion-datetime>
+            </ng-template>
+          </ion-modal>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+  <ion-button expand="block" id="logged-sleep" (click)="addData()" [disabled]="!dateValue1 || !dateValue2 || !timeValue1 || !timeValue2">Log!</ion-button>
+  <!--<ion-modal trigger="logged-sleep" show-backdrop="false">
+    <ng-template>
+      <ion-content class="center">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </ion-content>
+    </ng-template>
+  </ion-modal>-->

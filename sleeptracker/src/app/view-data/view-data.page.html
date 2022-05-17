@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list-header>View Your Data of</ion-list-header>
+      <ion-item (click)="showPicker = !showPicker" button="true" id="open-date-input5">
+      <ion-input placeholder="Date" slot="start" 
+        value="{{ date5 | date: 'MM.dd.yyyy' }}"></ion-input>
+        <ion-modal trigger="open-date-input5" show-backdrop="false" >
+          <ng-template>
+            <ion-datetime
+              [(ngModel)]="date5"
+              #popoverDatetime5
+              presentation="date"
+              (ionChange)="dateValue5 = getData(popoverDatetime5.value)"
+              showDefaultButtons ="true"
+            >
+          </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+  <ion-card>
+    <ion-card-header><ion-card-subtitle>Sleep Session:</ion-card-subtitle></ion-card-header>
+    <ion-card-content><ion-card-title>{{ logData[0] }}</ion-card-title></ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header><ion-card-subtitle>Sleepiness:</ion-card-subtitle></ion-card-header>
+    
+    <ion-card *ngFor="let value of sleepyLogData">
+    <ion-card-content><ion-card-title>{{ value[1] }}</ion-card-title></ion-card-content>
+    <ion-card-content>{{ ScaleValues[value[1]] }}</ion-card-content>
+  </ion-card>
+  </ion-card>
+</ion-content>
